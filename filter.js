@@ -103,3 +103,23 @@ var WooFilter = (function () {
 
     };
 })();
+
+$('li > .filter_param').click(function(e) {
+	e.preventDefault();
+
+	var element = $(this).data('slug');
+	var taxonomy = $(this).closest('[data-taxonomy]').data('taxonomy');
+
+	if ( WooFilter.exist(taxonomy, element) ) {
+
+		$(this).removeClass('active');
+
+		WooFilter.remove(taxonomy, element);
+
+	} else {
+
+		$(this).addClass('active');
+		WooFilter.add(taxonomy, element);
+	}
+
+});
